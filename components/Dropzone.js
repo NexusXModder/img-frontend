@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Upload, Image as ImageIcon, CheckCircle2 } from 'lucide-react';
+import { Upload, CheckCircle2 } from 'lucide-react';
 
 export default function Dropzone({ onFileSelected, selectedFile }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -23,18 +23,19 @@ export default function Dropzone({ onFileSelected, selectedFile }) {
         onDragOver={(e) => { e.preventDefault(); setIsHovered(true); }}
         onDragLeave={() => setIsHovered(false)}
         onDrop={handleDrop}
-        className={`relative glass-panel rounded-3xl p-10 text-center cursor-pointer transition-all duration-300 border-2 border-dashed ${
+        className={`relative glass-panel rounded-3xl p-8 text-center cursor-pointer transition-all duration-300 border-2 border-dashed ${
           isHovered ? 'border-blue-500 bg-blue-500/10 scale-[1.01]' : 'border-white/15 hover:border-white/30'
         }`}
       >
+        {/* Completely Invisible File Input Overlay */}
         <input
           type="file"
           accept=".jpg,.jpeg,.png,.heic"
-          onChange={(e) => e.target.files[0] && onFileSelected(e.target.files[0])}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          onChange={(e) => e.target.files && e.target.files[0] && onFileSelected(e.target.files[0])}
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20 overflow-hidden"
         />
 
-        <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="flex flex-col items-center justify-center space-y-4 pointer-events-none relative z-10">
           {selectedFile ? (
             <>
               <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
