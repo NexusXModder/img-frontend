@@ -14,7 +14,7 @@ export default function Home() {
   const [cameraModel, setCameraModel] = useState('');
 
   // UPDATE THIS WITH YOUR RENDER BACKEND URL LATER
-  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://img-backend-u7k4.onrender.com/";
+  const BACKEND_URL = (process.env.NEXT_PUBLIC_BACKEND_URL || "https://img-backend-u7k4.onrender.com").replace(/\/+$/, "");
 
   const handleProcess = async () => {
     if (!file) return;
@@ -33,7 +33,16 @@ export default function Home() {
         body: formData,
       });
 
-      if (!response.ok) throw new Error("Processing failed");
+      if (!response.ok) {
+        let message = `Request failed (${response.status})`;
+        try {
+          const payload = await response.json();
+          if (payload?.detail) message = typeof payload.detail === "string" ? payload.detail : JSON.stringify(payload.detail);
+        } catch (_) {
+          // Keep the HTTP status message if the backend did not return JSON.
+        }
+        throw new Error(message);
+      }
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
