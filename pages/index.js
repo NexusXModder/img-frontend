@@ -14,7 +14,7 @@ export default function Home() {
   const [cameraModel, setCameraModel] = useState('');
 
   // UPDATE THIS WITH YOUR RENDER BACKEND URL LATER
-  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://img-backend-u7k4.onrender.com/";
 
   const handleProcess = async () => {
     if (!file) return;
