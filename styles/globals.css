@@ -1,0 +1,37 @@
+@tailwindcss base;
+@tailwindcss components;
+@tailwindcss utilities;
+
+body {
+  background: radial-gradient(circle at 50% 0%, #1c1c1e, #000000 80%);
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.apple-button {
+  background: linear-gradient(180deg, #0077ED 0%, #0058B3 100%);
+  box-shadow: 0 4px 15px rgba(0, 119, 237, 0.3);
+  transition: all 0.2s ease;
+}
+
+.apple-button:hover {
+  box-shadow: 0 6px 20px rgba(0, 119, 237, 0.5);
+  transform: translateY(-1px);
+}
