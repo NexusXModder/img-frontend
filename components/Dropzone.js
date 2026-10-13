@@ -32,7 +32,8 @@ export default function Dropzone({ onFileSelected, selectedFile }) {
           type="file"
           accept=".jpg,.jpeg,.png,.heic"
           onChange={(e) => e.target.files && e.target.files[0] && onFileSelected(e.target.files[0])}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20 overflow-hidden"
+          className="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
+          aria-label="Choose an image file"
         />
 
         <div className="flex flex-col items-center justify-center space-y-4 pointer-events-none relative z-10">
